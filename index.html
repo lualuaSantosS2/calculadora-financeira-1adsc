@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="divMensagem">
+        <div class="exirbir-mensagem">
+            <img src="image/icon-lampada.png" alt="" class="img-icon-lampada"><br>
+            <span class="txt-desc-produto">djjdrkljlgsdjgdlskjsdlgkjsdflgkjdfglkdfjgkdlfgjdflgjdfgçfg</span><br>
+            <button class="btn-decisao-orcamento" onclick="decisaoOrcamento()">Calcule seu Orçamento</button>
+        </div>
+    </div>
+
+   
+</body>
+</html> 
+<script>
+    function decisaoOrcamento(){
+        divMensagem.innerHTML = `
+        <button onclick="OrcamentoInvestidor()" class="btn-investidor-cliente">
+            <img src="image/btn-img-investidor.png" alt="" class="img-btn-investidor-cliente">
+            <p class="txt-btn">Sou Investidor</p>
+        </button>
+
+        <button onclick="OrcamentoCliente()" class="btn-investidor-cliente">
+            <img src="image/btn-img-cliente.png" alt="" class="img-btn-investidor-cliente">
+            <p class="txt-btn">Sou Cliente</p>
+        </button> 
+        `;
+    }
+
+    function OrcamentoInvestidor(){
+        divMensagem.innerHTML = `
+        <div class="card">
+            <p class="card-titulo">ORÇAMENTOS</p>
+            <hr class="card-linha">
+            <p class="card-pergunta">Qual é a empresa parceira?</p><br>
+            <input type="text" id="inputNomeEmpresa" class="card-input"><br>
+            <p class="card-pergunta">Quantas unidades terá seu lote?</p><br>
+            <input type="text" id="inputQtdLote" class="card-input"><br>
+            <button class="btn-calculo-investidor-cliente" onclick="exibirOrcamentoInvestidor()">Calcular</button>
+        </div>`;
+    }
+
+    function OrcamentoCliente(){
+        divMensagem.innerHTML = `
+        <div class="card">
+            <p class="card-titulo">ORÇAMENTOS</p>
+            <hr class="card-linha">
+            <p class="card-pergunta">Qual é a o seu nome?</p><br>
+            <input type="text" id="inputNomeCliente" class="card-input"><br>
+            <p class="card-pergunta">Quantas janelas tem sua casa?</p><br>
+            <input type="text" id="inputQtdJanela" class="card-input"><br>
+            <button class="btn-calculo-investidor-cliente" onclick="exibirOrcamentoCliente()">Calcular</button>
+        </div>`;
+    }
+    function exibirOrcamentoInvestidor(){
+        var nomeEmpresa = inputNomeEmpresa.value;
+        var qtdLote = Number(inputQtdLote.value);
+
+        var investimento = qtdLote * 370;
+
+        var faturamento = investimento + (investimento * 0.4);
+        
+
+        divMensagem.innerHTML = `
+        <div class="card">
+            <p class="card-titulo">ORÇAMENTOS</p>
+            <hr class="card-linha">
+            <p class="card-resultado">Olá ${nomeEmpresa}! <br>
+                                    seu investimento será de <br>
+                                    ${investimento} reais<br>
+                                    para um lote de <br>
+                                    ${qtdLote} unidades <br>
+                                    e após vendas você terá faturamento, <br>
+                                    baseado na taxa  40% de <br>
+                                    ${faturamento} reais</p>
+            <button class="btn-compra-investidor-cliente" >Prosseguir com a Compra</button>
+        </div>`;
+    }
+
+    function exibirOrcamentoCliente(){
+        var nomeCliente = inputNomeCliente.value;
+        var qtdJanela = Number(inputQtdJanela.value);
+        var orcamentoFinal = qtdJanela * 518;
+        var direitoDesconto = 'não adicionado';
+        
+        if (qtdJanela > 5){
+            orcamentoFinal = orcamentoFinal - (orcamentoFinal * 0.15);
+            direitoDesconto = 'sim adicionado';
+        }
+
+        divMensagem.innerHTML = `
+        <div class="card">
+            <p class="card-titulo">ORÇAMENTOS</p>
+            <hr class="card-linha">
+            <p class="card-resultado">Bem vindo, ${nomeCliente}!<br> 
+                                    Sua compra para instalção das janelas<br> 
+                                    será de ${orcamentoFinal} reais<br> 
+                                    para ${qtdJanela} janelas<br> 
+                                    baseado no valor de R$ 684,00<br> 
+                                    por janela, mas ${direitoDesconto} <br> 
+                                    desconto de 15% apartir 6 janelas.<br> 
+                                    Agradecemos sua confiança!</p>
+            <button class="btn-compra-investidor-cliente" >Prosseguir com a Compra</button>
+        </div>`;
+    }
+</script>
